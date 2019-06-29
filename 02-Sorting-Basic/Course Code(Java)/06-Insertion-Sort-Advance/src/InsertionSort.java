@@ -29,10 +29,17 @@ public class InsertionSort {
             // }
 
             // 写法2
-            for (int j = i; j > 0 && arr[j].compareTo(arr[j - 1]) < 0; j--) {
-                swap(arr, j, j - 1);
-            }
+            // for (int j = i; j > 0 && arr[j].compareTo(arr[j - 1]) < 0; j--) {
+            //     swap(arr, j, j - 1);
+            // }
 
+            // 写法3
+            Comparable e = arr[i];
+            int j = i;
+            for (; j > 0 && arr[j - 1].compareTo(e) > 0; j--) {
+                arr[j] = arr[j - 1];
+            }
+            arr[j] = e;
         }
     }
 
