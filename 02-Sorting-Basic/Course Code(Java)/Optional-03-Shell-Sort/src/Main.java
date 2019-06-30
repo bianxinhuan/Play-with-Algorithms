@@ -9,9 +9,8 @@ import java.util.Arrays;
 public class Main {
 
     /**
-     * 比较SelectionSort和InsertionSort两种排序算法的性能效率
-     * 优化后，插入排序比选择排序性能略好
-     * 对于有序性强的数组，插入排序远远优于选择排序
+     * 比较SelectionSort, InsertionSort和BubbleSort和ShellSort四种排序算法的性能效率
+     * ShellSort是这四种排序算法中性能最优的排序算法
      *
      * @param args
      */
@@ -30,25 +29,11 @@ public class Main {
         SortTestHelper.testSort(SelectionSort.class.getName(), arr1);
         SortTestHelper.testSort(InsertionSort.class.getName(), arr2);
         SortTestHelper.testSort(BubbleSort.class.getName(), arr3);
-        SortTestHelper.testSort(BubbleSort2.class.getName(), arr4);
+        SortTestHelper.testSort(ShellSort.class.getName(), arr4);
 
         System.out.println();
 
-        // 测试2 有序性更强的数组
-        System.out.println("Test for more ordered random array, size = " + N + " , random range [0,3]");
-
-        arr1 = SortTestHelper.generateRandomArray(N, 0, 3);
-        arr2 = Arrays.copyOf(arr1, arr1.length);
-        arr3 = Arrays.copyOf(arr1, arr1.length);
-        arr4 = Arrays.copyOf(arr1, arr1.length);
-
-        SortTestHelper.testSort(SelectionSort.class.getName(), arr1);
-        SortTestHelper.testSort(InsertionSort.class.getName(), arr2);
-        SortTestHelper.testSort(BubbleSort.class.getName(), arr3);
-        SortTestHelper.testSort(BubbleSort2.class.getName(), arr4);
-        System.out.println();
-
-        // 测试3 测试近乎有序的数组
+        // 测试2 测试近乎有序的数组
         int swapTimes = 100;
         System.out.println("Test for nearly ordered array, size = " + N + " , swap time = " + swapTimes);
 
@@ -60,7 +45,7 @@ public class Main {
         SortTestHelper.testSort(SelectionSort.class.getName(), arr1);
         SortTestHelper.testSort(InsertionSort.class.getName(), arr2);
         SortTestHelper.testSort(BubbleSort.class.getName(), arr3);
-        SortTestHelper.testSort(BubbleSort2.class.getName(), arr4);
+        SortTestHelper.testSort(ShellSort.class.getName(), arr4);
         System.out.println();
     }
 }
