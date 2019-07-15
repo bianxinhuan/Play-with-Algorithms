@@ -1,5 +1,3 @@
-import com.sun.org.apache.xerces.internal.dom.PSVIAttrNSImpl;
-
 /**
  * 递归的二分查找算法
  *
