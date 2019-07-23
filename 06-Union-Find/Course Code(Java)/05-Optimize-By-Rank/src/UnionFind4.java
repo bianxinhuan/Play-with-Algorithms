@@ -17,13 +17,13 @@ public class UnionFind4 {
     private int[] rank;
     private int count;
 
-    public UnionFind4(int n) {
-        this.count = n;
-        this.parent = new int[n];
-        this.rank = new int[n];
+    public UnionFind4(int count) {
+        this.count = count;
+        this.parent = new int[count];
+        this.rank = new int[count];
 
         // 初始化, 每一个parent[i]指向自己, 表示每一个元素自己自成一个集合
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < count; i++) {
             parent[i] = i;
             rank[i] = 1;
         }
@@ -77,9 +77,9 @@ public class UnionFind4 {
         // 根据两个元素所在树的元素个数不同判断合并方向
         // 将元素个数少的集合合并到元素个数多的集合上
         if (rank[pRoot] < rank[qRoot]) {
-            rank[pRoot] = qRoot;
+            parent[pRoot] = qRoot;
         } else if (rank[pRoot] > rank[qRoot]) {
-            rank[qRoot] = pRoot;
+            parent[qRoot] = pRoot;
         } else { // rank[pRoot] == rank[qRoot]
             parent[pRoot] = qRoot;
             rank[qRoot] += 1;

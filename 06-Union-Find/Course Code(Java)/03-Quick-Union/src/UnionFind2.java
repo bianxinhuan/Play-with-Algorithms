@@ -13,11 +13,11 @@ public class UnionFind2 {
     private int[] parent;
     private int count;
 
-    public UnionFind2(int n) {
-        this.count = n;
-        this.parent = new int[n];
+    public UnionFind2(int count) {
+        this.count = count;
+        this.parent = new int[count];
 
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < count; i++) {
             parent[i] = i;
         }
     }
