@@ -1,10 +1,10 @@
 /**
- * 我们的第三版Union-Find
+ * 我们的第四版Union-Find
  *
  * @author bianxinhuan
- * @date 2019-07-23 19:32:49
+ * @date 2019-07-23 22:10:49
  */
-public class UnionFind3 {
+public class UnionFind4 {
 
     /**
      * 我们的第二版Union-Find, 使用一个数组构建一棵指向父节点的树
@@ -12,20 +12,20 @@ public class UnionFind3 {
      */
     private int[] parent;
     /**
-     * sz[i]表示以i为根的集合中元素个数
+     * rank[i]表示以i为根的集合所表示的树的层数
      */
-    private int[] sz;
+    private int[] rank;
     private int count;
 
-    public UnionFind3(int n) {
+    public UnionFind4(int n) {
         this.count = n;
         this.parent = new int[n];
-        this.sz = new int[n];
+        this.rank = new int[n];
 
         // 初始化, 每一个parent[i]指向自己, 表示每一个元素自己自成一个集合
         for (int i = 0; i < n; i++) {
             parent[i] = i;
-            sz[i] = 1;
+            rank[i] = 1;
         }
     }
 
@@ -37,7 +37,9 @@ public class UnionFind3 {
      * @return
      */
     public int find(int p) {
-
+        assert( p >= 0 && p < count );
+        // 不断去查询自己的父亲节点, 直到到达根节点
+        // 根节点的特点: parent[p] == p
         while (p != parent[p]) {
             p = parent[p];
         }
@@ -74,12 +76,13 @@ public class UnionFind3 {
 
         // 根据两个元素所在树的元素个数不同判断合并方向
         // 将元素个数少的集合合并到元素个数多的集合上
-        if (sz[pRoot] < sz[qRoot]) {
+        if (rank[pRoot] < rank[qRoot]) {
+            rank[pRoot] = qRoot;
+        } else if (rank[pRoot] > rank[qRoot]) {
+            rank[qRoot] = pRoot;
+        } else { // rank[pRoot] == rank[qRoot]
             parent[pRoot] = qRoot;
-            sz[qRoot] += sz[pRoot];
-        } else {
-            parent[qRoot] = pRoot;
-            sz[pRoot] += sz[qRoot];
+            rank[qRoot] += 1;
         }
     }
 }
